@@ -1,14 +1,20 @@
-import { View, Text, StyleSheet, TouchableOpacity, Pressable } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 import { enumTimerType } from "../utils/consts";
 
-const options = [{ value: "POMO", label: "Pomodoro" }, { value: "SHORT", label: "Short Break" }, { value: "LONG", label: "Long Break"}];
+const options = [
+  { value: "POMO", label: "Pomodoro" },
+  { value: "SHORT", label: "Short Break" },
+  { value: "LONG", label: "Long Break" },
+];
 
 export const Header = ({
   currentTab,
+  disabled,
   setCurrentTab,
   setTime,
 }: {
   currentTab: enumTimerType;
+  disabled: boolean;
   setCurrentTab: (value: enumTimerType) => void;
   setTime: (value: number) => void;
 }) => {
@@ -30,6 +36,7 @@ export const Header = ({
             handleChangeTime(index);
             handleChangeCurrentTab(option.value as enumTimerType);
           }}
+          disabled={disabled}
           style={[
             styles.optionStyle,
             currentTab !== option.value && { borderColor: "transparent" },
